@@ -43,6 +43,41 @@
 </body>
 
 <script>
+
+document.getElementById("sudoku-board").addEventListener("input", function (event) {
+            if (event.target && event.target.nodeName == "TD") {
+                validateInput(event.target);
+            }
+        });
+
+        function validateInput(cell) {
+            var value = cell.innerText.trim();
+
+            if (/^[1-9]?$/.test(value)) {
+
+                cell.innerText = value;
+                moveFocusToNextCell(cell);
+
+            } else {
+
+                cell.innerText = '';
+            }
+        }
+
+        function moveFocusToNextCell(currentCell) {
+            var nextCell = currentCell.nextElementSibling;
+
+            if (nextCell) {
+                var range = document.createRange();
+                var selection = window.getSelection();
+
+                range.setStart(nextCell, 0);
+                range.collapse(true);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
      function getEnteredValues() {
             var enteredValues = [];
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
