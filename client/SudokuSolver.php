@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Solver</title>
-    <link rel="stylesheet" href="DAA.css">
+    <link rel="stylesheet" href="SudokuSolver.css">
 </head>
 <body>
     <div id="container">
