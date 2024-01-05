@@ -1,0 +1,37 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("https://image.winudf.com/v2/image1/Y29tLnNib3guc3Vkb2t1Y2xhc3NpY19pY29uXzE2NzE5Njc3OTNfMDAy/icon.png?w=&fakeurl=1");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: #333;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #45a049;
+}
