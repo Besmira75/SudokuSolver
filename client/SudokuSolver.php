@@ -29,6 +29,41 @@
            <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
            <tr> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td> <td contenteditable="true"></td>
         </table>
-</div>
+        <br>
+        <div class="btns">
+        <div>
+          <button id="solve-button">Solve</button>
+        </div>
+
+        <div>
+          <button id="clear-button">Reset</button>
+        </div>
+        </div>
+    </div>
 </body>
+
+<script>
+     function getEnteredValues() {
+            var enteredValues = [];
+            var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+
+            cells.forEach(function (cell) {
+                enteredValues.push(cell.textContent.trim() || null);
+            });
+
+            return enteredValues;
+        }
+
+        function solveSudoku() {
+            var enteredValues = getEnteredValues();
+            console.log('Entered Values:', enteredValues);
+        }
+
+        function resetSudoku() {
+            var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+            cells.forEach(function (cell) {
+                cell.textContent = '';
+            });
+        }
+</script>
  </html>
