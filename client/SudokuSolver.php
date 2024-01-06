@@ -32,11 +32,11 @@
         <br>
         <div class="btns">
         <div>
-          <button id="solve-button">Solve</button>
+          <button id="solve-button" onclick="solveSudoku()">Solve</button>
         </div>
 
         <div>
-          <button id="clear-button">Reset</button>
+          <button id="clear-button" onclick="resetSudoku()">Reset</button>
         </div>
         </div>
     </div>
