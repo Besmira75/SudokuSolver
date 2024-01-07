@@ -38,6 +38,9 @@
         <div>
           <button id="clear-button" onclick="resetSudoku()">Reset</button>
         </div>
+        <div>
+            <button id="unsolve-button" onclick="unsolveSudoku()">Unsolve</button>
+        </div>
         </div>
     </div>
 </body>
@@ -107,6 +110,10 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             cells.forEach(function (cell) {
                 cell.textContent = '';
             });
+        }
+
+        function unsolveSudoku(){
+            
         }
 </script>
  </html>
