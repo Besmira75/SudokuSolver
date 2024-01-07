@@ -78,13 +78,21 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 selection.addRange(range);
             }
         }
-     function getEnteredValues() {
+        
+        function getEnteredValues() {
             var enteredValues = [];
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+            var boardSize = 9; 
 
-            cells.forEach(function (cell) {
-                enteredValues.push(cell.textContent.trim() || null);
-            });
+            for (var i = 0; i < boardSize; i++) {
+                var row = [];
+                for (var j = 0; j < boardSize; j++) {
+                    var cellIndex = i * boardSize + j;
+                    var cell = cells[cellIndex];
+                    row.push(parseInt(cell.textContent.trim(), 10) || 0);
+                }
+                enteredValues.push(row);
+            }
 
             return enteredValues;
         }
