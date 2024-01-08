@@ -103,6 +103,20 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
         function solveSudoku() {
             var enteredValues = getEnteredValues();
             console.log('Entered Values:', enteredValues);
+            $.ajax({
+                type: "POST",
+                url: "sudokusolver.php",
+                data: { 
+                    enteredValues: enteredValues,
+                    solveButton: true
+                },
+                success: function(response) {
+                    // Handle the response from the PHP script
+                    var solvedValues = JSON.parse(response);
+                    console.log(solvedValues);
+                    updateTable(solvedValues);
+                }
+            });
         }
 
         function resetSudoku() {
