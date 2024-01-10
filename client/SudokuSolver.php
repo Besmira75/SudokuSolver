@@ -118,12 +118,25 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 }
             });
         }
+        
 
         function resetSudoku() {
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
             cells.forEach(function (cell) {
                 cell.textContent = '';
             });
+        }
+        function updateTable(values) {
+        var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+        var boardSize = 9;
+
+        for (var i = 0; i < boardSize; i++) {
+            for (var j = 0; j < boardSize; j++) {
+                var cellIndex = i * boardSize + j;
+                var cell = cells[cellIndex];
+                cell.textContent = values[i][j];
+            }
+            }
         }
 
         function unsolveSudoku(){
