@@ -103,7 +103,22 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
         function solveSudoku() {
             var enteredValues = getEnteredValues();
             console.log('Entered Values:', enteredValues);
+            $.ajax({
+                type: "POST",
+                url: "../server/SudokuAlgorithm.php",
+                data: { 
+                    enteredValues: enteredValues,
+                    solveButton: true
+                },
+                success: function(response) {
+                    // Handle the response from the PHP script
+                    var solvedValues = JSON.parse(response);
+                    console.log(solvedValues);
+                    updateTable(solvedValues);
+                }
+            });
         }
+        
 
         function resetSudoku() {
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
@@ -111,9 +126,22 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 cell.textContent = '';
             });
         }
+        function updateTable(values) {
+        var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+        var boardSize = 9;
+
+        for (var i = 0; i < boardSize; i++) {
+            for (var j = 0; j < boardSize; j++) {
+                var cellIndex = i * boardSize + j;
+                var cell = cells[cellIndex];
+                cell.textContent = values[i][j];
+            }
+            }
+        }
 
         function unsolveSudoku(){
             
         }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
  </html>
