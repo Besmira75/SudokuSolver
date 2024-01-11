@@ -105,7 +105,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             console.log('Entered Values:', enteredValues);
             $.ajax({
                 type: "POST",
-                url: "sudokusolver.php",
+                url: "../server/SudokuAlgorithm.php",
                 data: { 
                     enteredValues: enteredValues,
                     solveButton: true
@@ -143,4 +143,5 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             
         }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
  </html>
