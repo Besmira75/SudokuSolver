@@ -140,19 +140,6 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             }
         }
 
-        function isValidSudokuBoard(board) {
-            if (!Array.isArray(board)  board.length !== 9) {
-                return false;
-            }
-
-            for (var i = 0; i < 9; i++) {
-                if (!Array.isArray(board[i])  board[i].length !== 9) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
         var initialValues;
 
         function storeInitialValues() {
