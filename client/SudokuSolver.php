@@ -51,6 +51,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             if (event.target && event.target.nodeName == "TD") {
                 validateInput(event.target);
             }
+            storeInitialValues();
         });
 
         function validateInput(cell) {
@@ -139,8 +140,60 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             }
         }
 
-        function unsolveSudoku(){
-            
+        function isValidSudokuBoard(board) {
+            if (!Array.isArray(board)  board.length !== 9) {
+                return false;
+            }
+
+            for (var i = 0; i < 9; i++) {
+                if (!Array.isArray(board[i])  board[i].length !== 9) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        var initialValues;
+
+        function storeInitialValues() {
+            initialValues = getEnteredValues();
+        }
+
+
+        function compareSolvedValues() {
+            var solvedValues = getEnteredValues();
+
+            if (initialValues && initialValues.length === solvedValues.length) {
+                for (var i = 0; i < 9; i++) {
+                    for (var j = 0; j < 9; j++) {
+                        if (initialValues[i][j] !== solvedValues[i][j]) {
+                            // The value has changed, do something here if needed
+                            console.log('Value changed at position (' + i + ', ' + j + ')');
+                        }
+                    }
+                }
+            } else {
+                console.log('Error: Initial values not stored or size mismatch.');
+            }
+        }
+
+
+        function unsolveSudoku() {
+            if (initialValues) {
+                var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+                var boardSize = 9;
+
+                for (var i = 0; i < boardSize; i++) {
+                    for (var j = 0; j < boardSize; j++) {
+                        var cellIndex = i * boardSize + j;
+                        var cell = cells[cellIndex];
+                        var initialValue = initialValues[i][j];
+                        cell.textContent = initialValue !== 0 ? initialValue.toString() : '';
+                    }
+                }
+            } else {
+                console.log('Error: Initial values not stored.');
+            }
         }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
