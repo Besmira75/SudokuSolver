@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 function findEmptyCell($board) {
     for ($row = 0; $row < 9; $row++) {
         for ($col = 0; $col < 9; $col++) {
@@ -77,17 +74,59 @@ if (isset($_POST['solveButton']) && isset($_POST['enteredValues'])) {
     if (is_array($enteredValues) && count($enteredValues) == 9 && count($enteredValues[0]) == 9) {
         // Create a copy of the board for reference
         $originalBoard = $enteredValues;
-
+        difficultyLevel($enteredValues);
+        
         // Solve the Sudoku board
         if (solveSudoku($enteredValues)) {
             // Output the solved board as JSON
+            
             echo json_encode($enteredValues);
-        } else {
+        } else {    
             echo json_encode(['error' => 'No solution found.']);
         }
     } else {
         echo json_encode(['error' => 'Invalid input. Please provide a valid 9x9 Sudoku board.']);
     }
 }
+
+function difficultyLevel($board) {
+    $count = 0;
+    $difficulty = '';
+    $countSudokuBoard = 0;
+
+    for ($row = 0; $row < 9; $row++) {
+        for ($col = 0; $col < 9; $col++) {
+            if ($board[$row][$col] != 0) {
+                $count++;
+            }
+        }
+    }
+
+    if ($count >= 35) {
+        $difficulty = 'easy';
+    } else if ($count < 35 && $count >= 25) {
+        $difficulty = 'medium';
+    } else if ($count < 25) {
+        $difficulty = 'hard';
+    }
+    $ds = DIRECTORY_SEPARATOR;
+
+    $directoryPath = "..{$ds}difficultyLevels{$ds}{$difficulty}";
+    while (file_exists("{$directoryPath}{$ds}sudokuBoard{$countSudokuBoard}.txt")) {
+        $countSudokuBoard++;
+    }
+
+    $filename = "{$directoryPath}{$ds}sudokuBoard" . $countSudokuBoard. ".txt";
+    $fileContent = '';
+
+    for ($row = 0; $row < 9; $row++) {
+        for ($col = 0; $col < 9; $col++) {
+            $fileContent .= $board[$row][$col] . " ";
+        }
+        $fileContent .= "\n";
+    }
+    file_put_contents($filename, $fileContent);
+}
+
 
 ?>
