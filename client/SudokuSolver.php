@@ -147,24 +147,6 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
         }
 
 
-        function compareSolvedValues() {
-            var solvedValues = getEnteredValues();
-
-            if (initialValues && initialValues.length === solvedValues.length) {
-                for (var i = 0; i < 9; i++) {
-                    for (var j = 0; j < 9; j++) {
-                        if (initialValues[i][j] !== solvedValues[i][j]) {
-                            // The value has changed, do something here if needed
-                            console.log('Value changed at position (' + i + ', ' + j + ')');
-                        }
-                    }
-                }
-            } else {
-                console.log('Error: Initial values not stored or size mismatch.');
-            }
-        }
-
-
         function unsolveSudoku() {
             if (initialValues) {
                 var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
