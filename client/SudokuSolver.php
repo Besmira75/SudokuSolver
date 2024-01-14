@@ -51,6 +51,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             if (event.target && event.target.nodeName == "TD") {
                 validateInput(event.target);
             }
+            storeInitialValues();
         });
 
         function validateInput(cell) {
@@ -139,8 +140,29 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             }
         }
 
-        function unsolveSudoku(){
-            
+        var initialValues;
+
+        function storeInitialValues() {
+            initialValues = getEnteredValues();
+        }
+
+
+        function unsolveSudoku() {
+            if (initialValues) {
+                var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
+                var boardSize = 9;
+
+                for (var i = 0; i < boardSize; i++) {
+                    for (var j = 0; j < boardSize; j++) {
+                        var cellIndex = i * boardSize + j;
+                        var cell = cells[cellIndex];
+                        var initialValue = initialValues[i][j];
+                        cell.textContent = initialValue !== 0 ? initialValue.toString() : '';
+                    }
+                }
+            } else {
+                console.log('Error: Initial values not stored.');
+            }
         }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
