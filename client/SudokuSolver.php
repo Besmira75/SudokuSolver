@@ -54,17 +54,23 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             storeInitialValues();
         });
 
+ document.getElementById("sudoku-board").addEventListener("keydown", function (event) {
+    if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        event.preventDefault();
+        moveFocusWithArrowKey(document.activeElement, event.key);
+    }
+});
+
         function validateInput(cell) {
-            var value = cell.innerText.trim();
+            var value = cell.textContent.trim();
 
             if (/^[1-9]?$/.test(value)) {
 
-                cell.innerText = value;
-                moveFocusToNextCell(cell);
+                cell.textContent = value;
 
             } else {
 
-                cell.innerText = '';
+                cell.textContent = '';
             }
         }
 
@@ -72,16 +78,30 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             var nextCell = currentCell.nextElementSibling;
 
             if (nextCell) {
+                nextCell.focus();
                 var range = document.createRange();
                 var selection = window.getSelection();
-
-                range.setStart(nextCell, 0);
+                range.setStart(nextCell.childNodes[0], nextCell.innerText.length);
                 range.collapse(true);
-
                 selection.removeAllRanges();
                 selection.addRange(range);
+              
             }
         }
+
+        function moveFocusToPrevCell(currentCell) {
+    var prevCell = currentCell.previousElementSibling;
+
+           if (prevCell) {
+               prevCell.focus();
+               var range = document.createRange();
+               var selection = window.getSelection();
+               range.setStart(prevCell.childNodes[0], prevCell.innerText.length);
+               range.collapse(true);
+               selection.removeAllRanges();
+               selection.addRange(range);
+    }
+}
         
         function getEnteredValues() {
             var enteredValues = [];
