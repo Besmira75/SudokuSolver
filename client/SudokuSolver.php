@@ -73,12 +73,30 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 cell.style.caretColor = 'black';
 
             } else {
-
+                
                 cell.textContent = '';
+                showAlert("Invalid Input", "Please enter numbers from 1 to 9.");
                 cell.style.color='';
                 ceel.style.border='';
+                
+
             }
         }
+
+        function showAlert(title, message) {
+            var alertDiv = document.createElement("div");
+            alertDiv.classList.add("custom-alert");
+            alertDiv.innerHTML = `
+                <strong>${title}</strong>: ${message}
+            `;
+
+            document.body.appendChild(alertDiv);
+
+            setTimeout(function () {
+                alertDiv.remove();
+            }, 2000); 
+        }
+
 
         function moveFocusToNextCell(currentCell) {
             var nextCell = currentCell.nextElementSibling;
@@ -263,4 +281,5 @@ function moveFocusToRightCell(rowIndex, colIndex) {
         }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  </html>
