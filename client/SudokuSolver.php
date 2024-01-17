@@ -67,10 +67,15 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             if (/^[1-9]?$/.test(value)) {
 
                 cell.textContent = value;
+                cell.style.color = '#1560bd';
+                cell.style.border = 'solid thin black';
+                cell.style.caretColor = 'black';
 
             } else {
 
                 cell.textContent = '';
+                cell.style.color='';
+                cell.style.border='';
             }
         }
 
@@ -145,6 +150,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
             cells.forEach(function (cell) {
                 cell.textContent = '';
+                cell.style.color='';
             });
         }
         function updateTable(values) {
