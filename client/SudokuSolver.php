@@ -149,6 +149,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             cells.forEach(function (cell) {
                 cell.textContent = '';
             });
+            initialValues = null;
         }
         function updateTable(values) {
         var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
