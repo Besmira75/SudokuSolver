@@ -46,7 +46,8 @@
 </body>
 
 <script>
-
+var initialValues = null;
+var resetPressed = false;
 document.getElementById("sudoku-board").addEventListener("input", function (event) {
             if (event.target && event.target.nodeName == "TD") {
                 validateInput(event.target);
@@ -123,6 +124,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
 
         function solveSudoku() {
             var enteredValues = getEnteredValues();
+            resetPressed = false;
             console.log('Entered Values:', enteredValues);
             $.ajax({
                 type: "POST",
@@ -142,6 +144,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
         
 
         function resetSudoku() {
+            resetPressed = true;
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
             cells.forEach(function (cell) {
                 cell.textContent = '';
@@ -160,10 +163,10 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             }
         }
 
-        var initialValues;
-
         function storeInitialValues() {
+            if(resetPressed){
             initialValues = getEnteredValues();
+            }
         }
 
 
