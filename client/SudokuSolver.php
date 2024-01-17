@@ -87,7 +87,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 nextCell.focus();
                 var range = document.createRange();
                 var selection = window.getSelection();
-                range.setStart(nextCell.childNodes[0], nextCell.innerText.length);
+                range.setStart(nextCell, nextCell.innerText.length);
                 range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
@@ -102,10 +102,78 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                prevCell.focus();
                var range = document.createRange();
                var selection = window.getSelection();
-               range.setStart(prevCell.childNodes[0], prevCell.innerText.length);
+               range.setStart(prevCell, prevCell.innerText.length);
                range.collapse(true);
                selection.removeAllRanges();
                selection.addRange(range);
+    }
+}
+function moveFocusWithArrowKey(currentCell, arrowKey) {
+    var rowIndex = currentCell.parentElement.rowIndex;
+    var colIndex = currentCell.cellIndex;
+
+    switch (arrowKey) {
+        case "ArrowRight":
+            moveFocusToNextCell(currentCell);
+            break;
+        case "ArrowDown":
+            moveFocusToDownCell(rowIndex, colIndex);
+            break;
+        case "ArrowLeft":
+            moveFocusToPrevCell(currentCell);
+            break;
+        case "ArrowUp":
+            moveFocusToUpCell(rowIndex, colIndex);
+            break;
+        default:
+            break;
+    }
+}
+
+function moveFocusToDownCell(rowIndex, colIndex) {
+    var nextRow = document.getElementById("sudoku-board").rows[rowIndex + 1];
+
+    if (nextRow) {
+        var cellBelow = nextRow.cells[colIndex];
+
+        if (cellBelow) {
+            cellBelow.focus();
+
+
+        }
+    }
+}
+
+function moveFocusToUpCell(rowIndex, colIndex) {
+    var prevRow = document.getElementById("sudoku-board").rows[rowIndex - 1];
+
+    if (prevRow) {
+        var cellAbove = prevRow.cells[colIndex];
+
+        if (cellAbove) {
+            cellAbove.focus();
+
+        }
+    }
+}
+
+function moveFocusToLeftCell(rowIndex, colIndex) {
+    var currentRow = document.getElementById("sudoku-board").rows[rowIndex];
+    var prevCell = currentRow.cells[colIndex - 1];
+
+    if (prevCell) {
+        prevCell.focus();
+
+    }
+}
+
+function moveFocusToRightCell(rowIndex, colIndex) {
+    var currentRow = document.getElementById("sudoku-board").rows[rowIndex];
+    var nextCell = currentRow.cells[colIndex + 1];
+
+    if (nextCell) {
+        nextCell.focus();
+
     }
 }
         
