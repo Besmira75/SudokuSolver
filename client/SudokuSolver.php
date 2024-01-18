@@ -45,14 +45,13 @@
     </div>
 </body>
 
-<script>
+<script>    
 var initialValues = null;
 var resetPressed = false;
 document.getElementById("sudoku-board").addEventListener("input", function (event) {
             if (event.target && event.target.nodeName == "TD") {
                 validateInput(event.target);
             }
-            storeInitialValues();
         });
 
  document.getElementById("sudoku-board").addEventListener("keydown", function (event) {
@@ -214,6 +213,7 @@ function moveFocusToRightCell(rowIndex, colIndex) {
         function solveSudoku() {
             var enteredValues = getEnteredValues();
             resetPressed = false;
+            storeInitialValues();
             console.log('Entered Values:', enteredValues);
             $.ajax({
                 type: "POST",
@@ -241,6 +241,7 @@ function moveFocusToRightCell(rowIndex, colIndex) {
             });
             initialValues = null;
         }
+
         function updateTable(values) {
         var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
         var boardSize = 9;
@@ -255,8 +256,8 @@ function moveFocusToRightCell(rowIndex, colIndex) {
         }
 
         function storeInitialValues() {
-            if(resetPressed){
-            initialValues = getEnteredValues();
+            if(!resetPressed){
+                initialValues = getEnteredValues();
             }
         }
 
