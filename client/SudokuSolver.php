@@ -224,9 +224,14 @@ function moveFocusToRightCell(rowIndex, colIndex) {
                 },
                 success: function(response) {
                     // Handle the response from the PHP script
-                    var solvedValues = JSON.parse(response);
-                    console.log(solvedValues);
-                    updateTable(solvedValues);
+                    var parsedResponse = JSON.parse(response);
+    
+                    if (parsedResponse.error) {
+                        showAlert('Error', parsedResponse.error);
+                    } else {
+                        var solvedValues = parsedResponse;
+                        updateTable(solvedValues);
+                    }
                 }
             });
         }
