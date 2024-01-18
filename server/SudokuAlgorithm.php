@@ -72,17 +72,23 @@ if (isset($_POST['solveButton']) && isset($_POST['enteredValues'])) {
 
     // Ensure $enteredValues is a 9x9 2D array
     if (is_array($enteredValues) && count($enteredValues) == 9 && count($enteredValues[0]) == 9) {
+        if (!isValidSudokuBoard($enteredValues)) {
+            echo json_encode(['error' => 'Invalid sudoku.']);
+        } 
+        else {
         // Create a copy of the board for reference
-        $originalBoard = $enteredValues;
-        difficultyLevel($enteredValues);
-        
-        // Solve the Sudoku board
-        if (solveSudoku($enteredValues)) {
-            // Output the solved board as JSON
+            $originalBoard = $enteredValues;
+            difficultyLevel($enteredValues);
             
-            echo json_encode($enteredValues);
-        } else {    
-            echo json_encode(['error' => 'No solution found.']);
+            // Solve the Sudoku board
+            if (solveSudoku($enteredValues) == true) {
+                // Output the solved board as JSON
+                
+                echo json_encode($enteredValues);
+            }
+            else{
+                echo json_encode(['error' => 'No solution found!']);
+            }
         }
     } else {
         echo json_encode(['error' => 'Invalid input. Please provide a valid 9x9 Sudoku board.']);
@@ -127,6 +133,56 @@ function difficultyLevel($board) {
     }
     file_put_contents($filename, $fileContent);
 }
+function isValidSudokuBoard($board) {
+    // Check rows and columns
+    for ($i = 0; $i < 9; $i++) {
+        if (!isValidSet($board[$i]) || !isValidSet(array_column($board, $i))) {
+            return false;
+        }
+    }
+
+    // Check 3x3 grids
+    for ($row = 0; $row < 9; $row += 3) {
+        for ($col = 0; $col < 9; $col += 3) {
+            $grid = [];
+            for ($i = 0; $i < 3; $i++) {
+                for ($j = 0; $j < 3; $j++) {
+                    $grid[] = $board[$row + $i][$col + $j];
+                }
+            }
+            if (!isValidSet($grid)) {
+                return false;
+            }
+        }
+    }
+
+    // If the board passes all checks, it is valid
+    return true;
+}
+
+
+function isValidSet($set) {
+    // Use an associative array to track the occurrence of numbers
+    $occurrences = [];
+
+    // Iterate through the set
+    foreach ($set as $num) {
+        // Skip zero as it represents an empty cell
+        if ($num != 0) {
+            // If the number is not in the occurrences array, add it
+            if (!isset($occurrences[$num])) {
+                $occurrences[$num] = true;
+            } else {
+                // If the number is already in the occurrences array, it's a duplicate
+                return false;
+            }
+        }
+    }
+
+    // The set is valid (no duplicates)
+    return true;
+}
+
 
 
 ?>

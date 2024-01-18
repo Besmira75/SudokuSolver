@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
 body {
-    background-color: #d3f3cf;
+    background-color: #e1e5f8;
 }
 
 #container {
@@ -9,7 +9,8 @@ body {
 
 .padd {
     font-size: 4rem;
-    font-family:'Courier New', Courier, monospace;
+    font-family: Georgia, monospace;
+    color: #23297A;
 }
 
 table {
@@ -40,21 +41,22 @@ td {
 }
 
 button {
-  margin-top: 15px;
-  font-size: 1.5em;
-  background-color: #A288E3;
-  color: white;
-  margin-left: 5px;
-  border: #A288E3;
-  border-radius: 5px;
-  padding: 5px 10px;
+    margin-top: 15px;
+    font-size: 1.5em;
+    background-color: #23297A;
+    color: white;
+    margin-left: 5px;
+    border: #23297A;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 120px;
 }
 
 button:hover{
-    color: #A288E3;
-    background-color: white;
-    outline: #A288E3;
-    transition: all 1s ease;
+    color: white;
+    background-color: #2c32a6;
+    outline: #23297A;
+    transition: all 0.1s ease;
     cursor: pointer;
 }
 
@@ -70,4 +72,21 @@ button:hover{
     button{
         font-size: 1rem;
     }
+}
+
+.custom-alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 300px;
+  padding: 15px;
+  background-color: #e74c3c; /* Red color */
+  color: #fff; /* White text */
+  border: 1px solid #c0392b;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 16px;
 }

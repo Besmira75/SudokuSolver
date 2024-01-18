@@ -45,13 +45,13 @@
     </div>
 </body>
 
-<script>
-
+<script>    
+var initialValues = null;
+var resetPressed = false;
 document.getElementById("sudoku-board").addEventListener("input", function (event) {
             if (event.target && event.target.nodeName == "TD") {
                 validateInput(event.target);
             }
-            storeInitialValues();
         });
 
  document.getElementById("sudoku-board").addEventListener("keydown", function (event) {
@@ -69,10 +69,30 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 cell.textContent = value;
 
             } else {
-
+                
                 cell.textContent = '';
+
+                showAlert("Invalid Input", "Please enter numbers from 1 to 9.");
+                cell.style.color='';
+                cell.style.border='';
+
             }
         }
+
+        function showAlert(title, message) {
+            var alertDiv = document.createElement("div");
+            alertDiv.classList.add("custom-alert");
+            alertDiv.innerHTML = `
+                <strong>${title}</strong>: ${message}
+            `;
+
+            document.body.appendChild(alertDiv);
+
+            setTimeout(function () {
+                alertDiv.remove();
+            }, 2000); 
+        }
+
 
         function moveFocusToNextCell(currentCell) {
             var nextCell = currentCell.nextElementSibling;
@@ -81,7 +101,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 nextCell.focus();
                 var range = document.createRange();
                 var selection = window.getSelection();
-                range.setStart(nextCell.childNodes[0], nextCell.innerText.length);
+                range.setStart(nextCell, nextCell.innerText.length);
                 range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
@@ -96,10 +116,78 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                prevCell.focus();
                var range = document.createRange();
                var selection = window.getSelection();
-               range.setStart(prevCell.childNodes[0], prevCell.innerText.length);
+               range.setStart(prevCell, prevCell.innerText.length);
                range.collapse(true);
                selection.removeAllRanges();
                selection.addRange(range);
+    }
+}
+function moveFocusWithArrowKey(currentCell, arrowKey) {
+    var rowIndex = currentCell.parentElement.rowIndex;
+    var colIndex = currentCell.cellIndex;
+
+    switch (arrowKey) {
+        case "ArrowRight":
+            moveFocusToNextCell(currentCell);
+            break;
+        case "ArrowDown":
+            moveFocusToDownCell(rowIndex, colIndex);
+            break;
+        case "ArrowLeft":
+            moveFocusToPrevCell(currentCell);
+            break;
+        case "ArrowUp":
+            moveFocusToUpCell(rowIndex, colIndex);
+            break;
+        default:
+            break;
+    }
+}
+
+function moveFocusToDownCell(rowIndex, colIndex) {
+    var nextRow = document.getElementById("sudoku-board").rows[rowIndex + 1];
+
+    if (nextRow) {
+        var cellBelow = nextRow.cells[colIndex];
+
+        if (cellBelow) {
+            cellBelow.focus();
+
+
+        }
+    }
+}
+
+function moveFocusToUpCell(rowIndex, colIndex) {
+    var prevRow = document.getElementById("sudoku-board").rows[rowIndex - 1];
+
+    if (prevRow) {
+        var cellAbove = prevRow.cells[colIndex];
+
+        if (cellAbove) {
+            cellAbove.focus();
+
+        }
+    }
+}
+
+function moveFocusToLeftCell(rowIndex, colIndex) {
+    var currentRow = document.getElementById("sudoku-board").rows[rowIndex];
+    var prevCell = currentRow.cells[colIndex - 1];
+
+    if (prevCell) {
+        prevCell.focus();
+
+    }
+}
+
+function moveFocusToRightCell(rowIndex, colIndex) {
+    var currentRow = document.getElementById("sudoku-board").rows[rowIndex];
+    var nextCell = currentRow.cells[colIndex + 1];
+
+    if (nextCell) {
+        nextCell.focus();
+
     }
 }
         
@@ -123,6 +211,8 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
 
         function solveSudoku() {
             var enteredValues = getEnteredValues();
+            resetPressed = false;
+            storeInitialValues();
             console.log('Entered Values:', enteredValues);
             $.ajax({
                 type: "POST",
@@ -133,20 +223,28 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 },
                 success: function(response) {
                     // Handle the response from the PHP script
-                    var solvedValues = JSON.parse(response);
-                    console.log(solvedValues);
-                    updateTable(solvedValues);
+                    var parsedResponse = JSON.parse(response);
+    
+                    if (parsedResponse.error) {
+                        showAlert('Error', parsedResponse.error);
+                    } else {
+                        var solvedValues = parsedResponse;
+                        updateTable(solvedValues);
+                    }
                 }
             });
         }
         
 
         function resetSudoku() {
+            resetPressed = true;
             var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
             cells.forEach(function (cell) {
                 cell.textContent = '';
             });
+            initialValues = null;
         }
+
         function updateTable(values) {
         var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
         var boardSize = 9;
@@ -160,10 +258,10 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
             }
         }
 
-        var initialValues;
-
         function storeInitialValues() {
-            initialValues = getEnteredValues();
+            if(!resetPressed){
+                initialValues = getEnteredValues();
+            }
         }
 
 
@@ -186,4 +284,5 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
         }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  </html>
