@@ -1,6 +1,7 @@
 # ![image](https://github.com/d3shira/SudokuSolver/assets/121398589/d0174e45-f14a-4cc6-8c90-ecac7e22a412)
 
-![Static Badge](https://img.shields.io/badge/version-1.0.0-7fa6ee) ![Static Badge](https://img.shields.io/badge/algorithm-backtracking-D17FEE) ![Static Badge](https://img.shields.io/badge/deployment-infinityfree-76DD6A)
+![Static Badge](https://img.shields.io/badge/version-1.0.0-7fa6ee) ![Static Badge](https://img.shields.io/badge/algorithm-backtracking-D17FEE) ![Static Badge](https://img.shields.io/badge/deployment-infinityfree-76DD6A) ![Static Badge](https://img.shields.io/badge/project_management-JiraSoftware-blue)
+
 
 
 
@@ -39,7 +40,7 @@ The program categorizes puzzles into difficulty levels based on the number of us
 - Easy: 35+ user inputs
 
 ## Installation and Usage:
-If you want to directly access the Sudoku Solver click the following link http://sudokusolver.free.nf/client/LandingPage.html
+If you want to directly access the Sudoku Solver click the following link http://sudokusolver.free.nf
 
 If you want to install the code on your computer and open it in your local host, follow these instructions:
 ### Requirements:
@@ -72,8 +73,8 @@ The backtracking algorithm is utilized for solving Sudoku puzzles. The file `Sud
    - Accepts a 9x9 Sudoku board via a POST request.
    - Validates input, determines difficulty, and outputs the solved board.
 ## Deployment
-Deployment done using *infinityfree*
-http://sudokusolver.free.nf/client/LandingPage.html
+Deployment done using *infinityfree* 
+http://sudokusolver.free.nf
 
 
 ## Testing Files:
