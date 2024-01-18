@@ -1,4 +1,5 @@
-# SudokuSolver
+# ![image](https://github.com/d3shira/SudokuSolver/assets/121398589/d0174e45-f14a-4cc6-8c90-ecac7e22a412)
+
 ![Static Badge](https://img.shields.io/badge/version-1.0.0-7fa6ee) ![Static Badge](https://img.shields.io/badge/algorithm-backtracking-D17FEE) ![Static Badge](https://img.shields.io/badge/project_management-JiraSoftware-76DD6A)
 
 
@@ -13,7 +14,9 @@ This is a straightforward Sudoku Solver program developed by utilizing the backt
 ##### **Server side**
  - PHP
   
- ### Visualization: (add image or gif here)
+ ### Visualization:
+ ![image](https://github.com/d3shira/SudokuSolver/assets/121398589/accb0030-9dfd-4856-842c-260d0a4fcb2b)
+
 
 ## Program Features:
 
@@ -26,11 +29,11 @@ This is a straightforward Sudoku Solver program developed by utilizing the backt
 
 ### Input Validations:
 - Only values between 1-9 can be entered.
-- If any other character besides 1-9 is entered, a warning/alert is displayed.
-- If the same number is entered more than once in the same row, column, or subgrid, a warning/alert is displayed.
+- If any other character besides 1-9 is entered, an alert is displayed.
+- If the same number is entered more than once in the same row, column, or subgrid, an alert is displayed.
 
 ### Difficulty Level Files:
-The program intelligently categorizes puzzles into difficulty levels based on the number of user inputs:
+The program categorizes puzzles into difficulty levels based on the number of user inputs:
 - Hard: 0-25 user inputs
 - Medium: 25 - 35 user inputs
 - Easy: 35+ user inputs
@@ -65,25 +68,25 @@ The backtracking algorithm is utilized for solving Sudoku puzzles. The file `Sud
 
 3. **Usage:**
    - Accepts a 9x9 Sudoku board via a POST request.
-   - Validates input, determines difficulty, and outputs the solved board as JSON.
+   - Validates input, determines difficulty, and outputs the solved board.
 
 
 ## Testing Files:
 Link to testing sheets [here](https://docs.google.com/spreadsheets/d/1UjiG2AFpxs_I1kot3p6F1NK48ja2KWx9nzgjj6g2ac4/edit?usp=sharing)
 
 ## Contributors:
-###### Work tracking and management was done using **[Jira Software](https://student-deshirarandobrava1.atlassian.net/jira/software/projects/SS/boards/2/timeline)** (click to see Jira Board)
-- Technical Project Manager: [Deshira Randobrava](https://github.com/d3shira)
+#### Work tracking and management was done using **[Jira Software](https://student-deshirarandobrava1.atlassian.net/jira/software/projects/SS/boards/2/timeline)**
+- [Deshira Randobrava](https://github.com/d3shira) - Technical Project Manager
 
 ### Backend Team:
 - [Blert Osmani](https://github.com/BlertOsmani) - Backend Lead
-- [Besmira Berisha](https://github.com/Besmira75) - Tester
-- [Dafina Sadiku](https://github.com/dafiinaa) - QA Lead
-- [Astrit Krasniqi](https://github.com/astritkrasniqi1)
+- [Besmira Berisha](https://github.com/Besmira75) - Backend Member + Tester
+- [Dafina Sadiku](https://github.com/dafiinaa) - Backend Member + QA Lead
+- [Astrit Krasniqi](https://github.com/astritkrasniqi1) - Backend Member
 
 ### Frontend Team:
 - [Dafina Balaj](https://github.com/dafinabalaj) - Frontend Lead
-- [Anjeza Gashi](https://github.com/anjezagashi) - Tester
-- [Blerta Azemi](https://github.com/bl3rt4) - Tester
-- [Blina Retkoceri](https://github.com/blinaretkoceri)
-- [Diart Maraj](https://github.com/diartmaraj)
+- [Anjeza Gashi](https://github.com/anjezagashi) - Frontend Member + Tester
+- [Blerta Azemi](https://github.com/bl3rt4) - Frontend Member + Tester
+- [Blina Retkoceri](https://github.com/blinaretkoceri) - Frontend Member
+- [Diart Maraj](https://github.com/diartmaraj) - Frontend Member
