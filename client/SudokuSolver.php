@@ -77,9 +77,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
                 cell.textContent = '';
                 showAlert("Invalid Input", "Please enter numbers from 1 to 9.");
                 cell.style.color='';
-                ceel.style.border='';
-                
-
+                cell.style.border='';
             }
         }
 
@@ -241,6 +239,7 @@ function moveFocusToRightCell(rowIndex, colIndex) {
                 cell.textContent = '';
                 cell.style.color='';
             });
+            initialValues = null;
         }
         function updateTable(values) {
         var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
