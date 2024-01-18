@@ -1,6 +1,6 @@
 # ![image](https://github.com/d3shira/SudokuSolver/assets/121398589/d0174e45-f14a-4cc6-8c90-ecac7e22a412)
 
-![Static Badge](https://img.shields.io/badge/version-1.0.0-7fa6ee) ![Static Badge](https://img.shields.io/badge/algorithm-backtracking-D17FEE) ![Static Badge](https://img.shields.io/badge/project_management-JiraSoftware-76DD6A)
+![Static Badge](https://img.shields.io/badge/version-1.0.0-7fa6ee) ![Static Badge](https://img.shields.io/badge/algorithm-backtracking-D17FEE) ![Static Badge](https://img.shields.io/badge/deployment-infinityfree-76DD6A)
 
 
 
@@ -39,6 +39,8 @@ The program categorizes puzzles into difficulty levels based on the number of us
 - Easy: 35+ user inputs
 
 ## Installation and Usage:
+If you want to directly access the Sudoku Solver click the following link http://sudokusolver.free.nf/client/LandingPage.html
+
 If you want to install the code on your computer and open it in your local host, follow these instructions:
 ### Requirements:
 - XAMPP
@@ -48,7 +50,7 @@ If you want to install the code on your computer and open it in your local host,
 ### Steps:
 1. Clone the repository
 2. Save the cloned repo as a folder in the htdocs folder on your computer.
-3. Go to your web browser and type: http://localhost/SudokuSolver/client/LandingPage.php
+3. Go to your web browser and type: http://localhost/SudokuSolver/client/LandingPage.html
 4. The program should be running! Click the ‘Start’ button to continue using the Sudoku Solver.
 
 
@@ -69,6 +71,9 @@ The backtracking algorithm is utilized for solving Sudoku puzzles. The file `Sud
 3. **Usage:**
    - Accepts a 9x9 Sudoku board via a POST request.
    - Validates input, determines difficulty, and outputs the solved board.
+## Deployment
+Deployment done using *infinityfree*
+http://sudokusolver.free.nf/client/LandingPage.html
 
 
 ## Testing Files:
