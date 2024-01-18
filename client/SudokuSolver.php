@@ -223,6 +223,7 @@ function moveFocusToRightCell(rowIndex, colIndex) {
                 cell.textContent = '';
                 cell.style.color='';
             });
+            initialValues = null;
         }
         function updateTable(values) {
         var cells = document.querySelectorAll('#sudoku-board td[contenteditable="true"]');
