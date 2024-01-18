@@ -76,7 +76,7 @@ document.getElementById("sudoku-board").addEventListener("input", function (even
 
                 cell.textContent = '';
                 cell.style.color='';
-                ceel.style.border='';
+                cell.style.border='';
             }
         }
 
