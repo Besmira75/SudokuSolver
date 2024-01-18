@@ -86,6 +86,9 @@ if (isset($_POST['solveButton']) && isset($_POST['enteredValues'])) {
                 
                 echo json_encode($enteredValues);
             }
+            else{
+                echo json_encode(['error' => 'No solution found!']);
+            }
         }
     } else {
         echo json_encode(['error' => 'Invalid input. Please provide a valid 9x9 Sudoku board.']);
